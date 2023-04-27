@@ -67,7 +67,7 @@ class UserController extends Controller
         $input['password'] = Hash::make($input['password']);
     
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($request->input('roles_name'));
     
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -81,8 +81,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $general_settings = General_settings::all();
         $user = User::find($id);
-        return view('AdminDashboard.users.show',compact('user'));
+        return view('AdminDashboard.users.show',compact('user' , 'general_settings'));
     }
     
     /**
@@ -115,7 +116,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles_name' => 'required'
         ]);
     
         $input = $request->all();
@@ -129,7 +130,7 @@ class UserController extends Controller
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($request->input('roles_name'));
     
         return redirect()->route('AdminDashboard.users.index')
                         ->with('success','User updated successfully');
@@ -143,8 +144,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('AdminDashboard.users.index')
+        User::destroy($id);
+        return view('AdminDashboard.users.index')
                         ->with('success','User deleted successfully');
     }
 }
