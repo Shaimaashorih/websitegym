@@ -165,30 +165,41 @@
                         </div>
                     </button>
                     <div class="clospall">
-                        <ul class="max-hieght">
-                            <li><a href="{{'/coursesa'}}">courses
-                                </a></li>
-                            <li><a href="{{'/workouts'}}">Workout
-                                </a></li>
-                            <li><a href="{{'/user_workouts'}}">Workout for user
-                                </a></li>
-                            <li><a href="{{'/timetables'}}">Timetable
-                                </a></li>
-                            @foreach($id as $articles)
-                            <li><a href="{{'articles/'. $articles->id .'/edit'}}">Articles
-                                </a></li>
-                            @endforeach
-                            <li><a href="{{url('/trainers')}}">trainer
-                                </a></li>
-                            <li><a href="{{url('/general_settings')}}">general settings
-                                </a></li>
-                            <li><a href="{{url('/users')}}">users
-                                </a></li>
-                            <li><a href="{{url('/roles')}}">permissions
-                                </a></li>
-                            <li><a href="{{url('/video_shows')}}">Video show
-                            </a></li>    
-                        </ul>
+                            <ul class="max-hieght">
+                                <li><a href="{{ '/dashboardadmin' }}">dashboardadmin
+                                    </a></li>
+                                <li><a href="{{ '/coursesa' }}">courses
+                                    </a></li>
+                                <li><a href="{{ '/workouts' }}">Workout
+                                    </a></li>
+                                <li><a href="{{ 'user_workouts' }}">Workout for users
+                                    </a></li>
+                                <li><a href="{{ '/timetables' }}">Timetable
+                                    </a></li>
+                                <li><a href="{{ '/diet_menus' }}">Food Menu
+                                    </a></li>
+                                @foreach ($articles as $articles)
+                                    <li><a href="{{ 'articles/' . $articles->id . '/edit' }}">Articles
+                                        </a></li>
+                                @endforeach
+                                <li><a href="{{ url('/trainers') }}">trainers
+                                    </a></li>
+                                <li><a href="{{ url('/general_settings' . '/' . 1 . '/edit') }}">general settings
+                                    </a></li>
+                                <li><a href="{{ url('/users') }}">users
+                                    </a></li>
+                                <li><a href="{{ url('/roles') }}">permissions
+                                    </a></li>
+                                <li><a href="{{ url('/video_shows') }}">Video show
+                                    </a></li>
+                                <li><a href="{{ url('/message') }}">message
+                                    </a></li>
+                                <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
                     </div>
                 </li>
             </ul>

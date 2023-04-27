@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Bord</title>
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/normaliz.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/main.css')}}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/normaliz.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.theme.default.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/main.css') }}" />
     <!-- icons script -->
     <script src="https://kit.fontawesome.com/92c7a83d65.js" crossorigin="anonymous"></script>
 </head>
@@ -22,11 +22,9 @@
         <!-- start part1 -->
         <div class="part1">
             @foreach ($general_settings as $item)
-     
-            <div class="log">
-                <img src="{{URL::asset('images').'/'.$item->logo_path}}" alt="Logo" />
-            </div>
-                
+                <div class="log">
+                    <img src="{{ URL::asset('images') . '/' . $item->logo_path }}" alt="Logo" />
+                </div>
             @endforeach
         </div>
         <!-- end part1 -->
@@ -111,22 +109,25 @@
                 <!-- start profile-btn -->
                 <div class="profile-btn" data-dropDown>
                     <button class="btn">
-                        <img class="" src="{{URL::asset('src/image/user.png')}}" alt="user.." srcset="">
+                        <img class="" src="{{ URL::asset('src/image/user.png') }}" alt="user.." srcset="">
                     </button>
                     <!-- start drop-down -->
                     <div class="dropdown bx-shadow b-white">
                         <!-- start max-height -->
                         <div class="max-height d-flex column padding-5 gap-5">
 
-                            <a href="#"><i class="fa-solid fa-person" data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
+                            <a href="#"><i class="fa-solid fa-person"
+                                    data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
                             <a href="#"><i class="fa-solid fa-envelope" data-color="#3097ef"></i>inbox</a>
 
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
 
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                             @csrf
-                         </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                         <!-- end max-height -->
                     </div>
@@ -163,131 +164,151 @@
                         </div>
                     </button>
                     <div class="clospall">
-                        <ul class="max-hieght">
-                            <li><a href="">courses
-                                </a></li>
-                            <li><a href="">Workout
-                                </a></li>
-                            <li><a href="">trainer
-                                </a></li>
-                            <li><a href="{{url('/general_settings')}}">general settings
-                                </a></li>
-                            <li><a href="{{url('/users')}}">users
-                                </a></li>
-                            <li><a href="{{url('/roles')}}">permissions
-                                </a></li>
-                            <li><a href="{{url('/video_shows')}}">Video show
-                            </a></li>    
-                        </ul>
-                    </div>
+                        <div class="clospall">
+                            <ul class="max-hieght">
+                                <li><a href="{{ '/dashboardadmin' }}">dashboardadmin
+                                    </a></li>
+                                <li><a href="{{ '/coursesa' }}">courses
+                                    </a></li>
+                                <li><a href="{{ '/workouts' }}">Workout
+                                    </a></li>
+                                <li><a href="{{ 'user_workouts' }}">Workout for users
+                                    </a></li>
+                                <li><a href="{{ '/timetables' }}">Timetable
+                                    </a></li>
+                                <li><a href="{{ '/diet_menus' }}">Food Menu
+                                    </a></li>
+                                @foreach ($articles as $articles)
+                                    <li><a href="{{ 'articles/' . $articles->id . '/edit' }}">Articles
+                                        </a></li>
+                                @endforeach
+                                <li><a href="{{ url('/trainers') }}">trainers
+                                    </a></li>
+                                <li><a href="{{ url('/general_settings' . '/' . 1 . '/edit') }}">general settings
+                                    </a></li>
+                                <li><a href="{{ url('/users') }}">users
+                                    </a></li>
+                                <li><a href="{{ url('/roles') }}">permissions
+                                    </a></li>
+                                <li><a href="{{ url('/video_shows') }}">Video show
+                                    </a></li>
+                                <li><a href="{{ url('/message') }}">message
+                                    </a></li>
+                                <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
+                                    </a></li>
+                            </ul>
+                        </div>
                 </li>
             </ul>
         </div>
-        <!-- end leftr-nav -->
-
-        <!-- ----------------------------- -->
-
-        <!-- start page-content -->
-        <div class="page-content padding-20">
-            <!-- start container -->
-            <div class="container d-flex row gap-20 wrap">
-
-     {{-- ************************************ --}}
-<!-- breadcrumb -->
-<div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-        <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الصلاحيات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافة
-                نوع مستخدم</span>
-        </div>
+        </li>
+        </ul>
     </div>
-</div>
-<!-- breadcrumb -->
+    <!-- end leftr-nav -->
+
+    <!-- ----------------------------- -->
+
+    <!-- start page-content -->
+    <div class="page-content padding-20">
+        <!-- start container -->
+        <div class="container d-flex row gap-20 wrap">
+
+            {{-- ************************************ --}}
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="my-auto">
+                    <div class="d-flex">
+                        <h4 class="content-title mb-0 my-auto">الصلاحيات</h4><span
+                            class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافة
+                            نوع مستخدم</span>
+                    </div>
+                </div>
+            </div>
+            <!-- breadcrumb -->
 
 
-@if (count($errors) > 0)
-<div class="alert alert-danger">
-    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>خطا</strong>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>خطا</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
 
 
 
-{!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
-<!-- row -->
-<div class="row">
-    <div class="col-md-12">
-        <div class="card mg-b-20">
-            <div class="card-body">
-                <div class="main-content-label mg-b-5">
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                        <div class="form-group">
-                            <p>اسم الصلاحية :</p>
-                            {!! Form::text('name', null, array('class' => 'form-control')) !!}
+            {!! Form::open(['route' => 'roles.store', 'method' => 'POST']) !!}
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mg-b-20">
+                        <div class="card-body">
+                            <div class="main-content-label mg-b-5">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
+                                    <div class="form-group">
+                                        <p>اسم الصلاحية :</p>
+                                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- col -->
+                                <div class="col-lg-4">
+                                    <ul id="treeview1">
+                                        <li><a href="#">الصلاحيات</a>
+                                            <ul>
+                                        </li>
+                                        @foreach ($permission as $value)
+                                            <label
+                                                style="font-size: 16px;">{{ Form::checkbox('permission[]', $value->id, false, ['class' => 'name']) }}
+                                                {{ $value->name }}</label>
+                                        @endforeach
+                                        </li>
+
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                </div>
+                                <!-- /col -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-main-primary">تاكيد</button>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- col -->
-                    <div class="col-lg-4">
-                        <ul id="treeview1">
-                            <li><a href="#">الصلاحيات</a>
-                                <ul>
-                            </li>
-                            @foreach($permission as $value)
-                            <label
-                                style="font-size: 16px;">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                                {{ $value->name }}</label>
 
-                            @endforeach
-                            </li>
-
-                        </ul>
-                        </li>
-                        </ul>
-                    </div>
-                    <!-- /col -->
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">تاكيد</button>
-                    </div>
-
-                </div>
             </div>
+            <!-- row closed -->
         </div>
+        <!-- Container closed -->
     </div>
+    <!-- main-content closed -->
 
-</div>
-<!-- row closed -->
-</div>
-<!-- Container closed -->
-</div>
-<!-- main-content closed -->
-
-{!! Form::close() !!}
-     {{-- ************************************ --}}
+    {!! Form::close() !!}
+    {{-- ************************************ --}}
 
     </div>
     <!-- end container -->
 
 
-</div>
-<!-- end page-content -->
-</div>
-<!-- end grid-page -->
+    </div>
+    <!-- end page-content -->
+    </div>
+    <!-- end grid-page -->
 
-<script src="{{URL::asset('src/js/jquery-3.6.0.js')}}"></script>
-<script src="{{URL::asset('src/js/owl.carousel.min.js')}}"></script>
-<script src="{{URL::asset('src/js/chart.min.js')}}"></script>
-<script src="{{URL::asset('src/js/main.js')}}"></script>
+    <script src="{{ URL::asset('src/js/jquery-3.6.0.js') }}"></script>
+    <script src="{{ URL::asset('src/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/chart.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/main.js') }}"></script>
 
 </body>
 

@@ -6,29 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Bord</title>
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/normaliz.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/main.css')}}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/normaliz.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.theme.default.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/main.css') }}" />
     <!-- icons script -->
     <script src="https://kit.fontawesome.com/92c7a83d65.js" crossorigin="anonymous"></script>
 </head>
 <style>
-                                
-    table{
+    table {
         border: 1px solid rgb(124, 121, 121);
         width: 80%;
         /* margin: 2% auto; */
         border-collapse: collapse;
         table-layout: fixed;
-    }   
-    #insertRow{
-        border: 2px solid rgb(124, 121, 121);
-       display: inline;
-       margin-left: 50%;
-    } 
-    
+    }
 
+    #insertRow {
+        border: 2px solid rgb(124, 121, 121);
+        display: inline;
+        margin-left: 50%;
+    }
 </style>
 
 <body>
@@ -40,11 +38,9 @@
         <div class="part1">
             <!-- start log -->
             @foreach ($general_settings as $item)
-     
-            <div class="log">
-                <img src="{{URL::asset('images').'/'.$item->logo_path}}" alt="Logo" />
-            </div>
-                
+                <div class="log">
+                    <img src="{{ URL::asset('images') . '/' . $item->logo_path }}" alt="Logo" />
+                </div>
             @endforeach
             <!-- end logo -->
         </div>
@@ -130,22 +126,25 @@
                 <!-- start profile-btn -->
                 <div class="profile-btn" data-dropDown>
                     <button class="btn">
-                        <img class="" src="{{URL::asset('src/image/user.png')}}" alt="user.." srcset="">
+                        <img class="" src="{{ URL::asset('src/image/user.png') }}" alt="user.." srcset="">
                     </button>
                     <!-- start drop-down -->
                     <div class="dropdown bx-shadow b-white">
                         <!-- start max-height -->
                         <div class="max-height d-flex column padding-5 gap-5">
 
-                            <a href="#"><i class="fa-solid fa-person" data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
+                            <a href="#"><i class="fa-solid fa-person"
+                                    data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
                             <a href="#"><i class="fa-solid fa-envelope" data-color="#3097ef"></i>inbox</a>
 
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
 
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                             @csrf
-                         </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                         <!-- end max-height -->
                     </div>
@@ -183,216 +182,231 @@
                     </button>
                     <div class="clospall">
                         <ul class="max-hieght">
-                            <li><a href="{{'/coursesa'}}">courses
+                            <li><a href="{{ '/dashboardadmin' }}">dashboardadmin
                                 </a></li>
-                            <li><a href="{{'/workouts'}}">Workout
+                            <li><a href="{{ '/coursesa' }}">courses
                                 </a></li>
-                            <li><a href="{{'/timetables'}}">Timetable
+                            <li><a href="{{ '/workouts' }}">Workout
                                 </a></li>
-                            @foreach($articles as $articles)
-                                <li><a href="{{'articles/'. $articles->id .'/edit'}}">Articles
+                            <li><a href="{{ 'user_workouts' }}">Workout for users
                                 </a></li>
+                            <li><a href="{{ '/timetables' }}">Timetable
+                                </a></li>
+                            <li><a href="{{ '/diet_menus' }}">Food Menu
+                                </a></li>
+                            @foreach ($articles as $articles)
+                                <li><a href="{{ 'articles/' . $articles->id . '/edit' }}">Articles
+                                    </a></li>
                             @endforeach
-                            <li><a href="{{url('/trainers')}}">trainer
+                            <li><a href="{{ url('/trainers') }}">trainers
                                 </a></li>
-                            <li><a href="{{url('/general_settings')}}">general settings
+                            <li><a href="{{ url('/general_settings' . '/' . 1 . '/edit') }}">general settings
                                 </a></li>
-                            <li><a href="{{url('/users')}}">users
+                            <li><a href="{{ url('/users') }}">users
                                 </a></li>
-                            <li><a href="{{url('/roles')}}">permissions
+                            <li><a href="{{ url('/roles') }}">permissions
                                 </a></li>
-                            <li><a href="{{url('/video_shows')}}">Video show
-                            </a></li>    
+                            <li><a href="{{ url('/video_shows') }}">Video show
+                                </a></li>
+                            <li><a href="{{ url('/message') }}">message
+                                </a></li>
+                            <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
+                                </a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </div>
-        <!-- end leftr-nav -->
+        </li>
+        </ul>
+    </div>
+    <!-- end leftr-nav -->
 
-        <!-- ----------------------------- -->
+    <!-- ----------------------------- -->
 
-        <!-- start page-content -->
-        <div class="page-content padding-20">
-            <!-- start container -->
-            <div class="container d-flex row gap-20 wrap">
+    <!-- start page-content -->
+    <div class="page-content padding-20">
+        <!-- start container -->
+        <div class="container d-flex row gap-20 wrap">
 
-     {{-- ************************************ --}}
-
-
-     @if(\Session::has('sucess'))
-     <div class="alert alert-success">
-         <p>{{\Session::get('success')}}</p>
-     </div>   
-     @endif
+            {{-- ************************************ --}}
 
 
-     <form  action= "{{url('user_workouts')}}" method="POST" enctype="multipart/form-data">
-        {{csrf_field()}}
- 
-        <div class="form-group row">
-          <label> User Name </label>
-              <div style="width: 35%;">
-                    
-                    <select  name="user_id" class="form-control">
-                        <option value=" "> choose user name </option>                                    
-                        @foreach ($users as $key => $value)
-                         <option value="{{$value->id}}">{{$value->name}}</option>                                    
-                        @endforeach
-                               
-                    </select>
-
-              </div>
-                  @error('user_id')
-                      <div class="form-error">
-                          {{$message}}
-                      </div>
-                  @enderror
-        </div>
-
-        <br>
-
-          <div class="table-responsive">
-            <!-- Add rows button-->
-            <a class="btn" id="insertRow" >Add Timetable</a>
+            @if (\Session::has('sucess'))
+                <div class="alert alert-success">
+                    <p>{{ \Session::get('success') }}</p>
+                </div>
+            @endif
 
 
-            <table class="table">
-                
+            <form action="{{ url('user_workouts') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
 
-                <thead>
-                    <tr>
-                        <th scope="col">workout</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Distance</th>
-                        <th scope="col">حذف</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
+                <div class="form-group row">
+                    <label> User Name </label>
+                    <div style="width: 35%;">
 
-                        <td>
-                          <div class="form-group row">
-                            {{-- <label > workout traininig   </label> --}}
-                
-                                <select name="workout_id[]"  class="form-control">
-                                    <option value="">choose workout </option>                                    
-                                    @foreach ($workouts as $key => $value)                               
-                                        <option value="{{$value->id}}">{{$value->title}}</option>                                    
-                                    @endforeach
-                                </select>
-                
-                            </div>
-                        </td>
+                        <select name="user_id" class="form-control">
+                            <option value=" "> choose user name </option>
+                            @foreach ($users as $key => $value)
+                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
 
-                        <td>          
-                            <div class="form-group row">
-                                {{-- <label> Duration </label> --}}
-                                <div class="col-md-9">
-                                    <input type="text" name="duration[]" placeholder="hh:mm:ss" class="form-control" size=30>
-                                    <div class="form-control-position">
-                                  </div>
-                                        @error('duration')
-                                            <div class="form-error">
-                                                {{$message}}
+                        </select>
+
+                    </div>
+                    @error('user_id')
+                        <div class="form-error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <br>
+
+                <div class="table-responsive">
+                    <!-- Add rows button-->
+                    <a class="btn" id="insertRow">Add Timetable</a>
+
+
+                    <table class="table">
+
+
+                        <thead>
+                            <tr>
+                                <th scope="col">workout</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Distance</th>
+                                <th scope="col">حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td>
+                                    <div class="form-group row">
+                                        {{-- <label > workout traininig   </label> --}}
+
+                                        <select name="workout_id[]" class="form-control">
+                                            <option value="">choose workout </option>
+                                            @foreach ($workouts as $key => $value)
+                                                <option value="{{ $value->id }}">{{ $value->title }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="form-group row">
+                                        {{-- <label> Duration </label> --}}
+                                        <div class="col-md-9">
+                                            <input type="text" name="duration[]" placeholder="hh:mm:ss"
+                                                class="form-control" size=30>
+                                            <div class="form-control-position">
                                             </div>
-                                        @enderror
-                                </div>
-                              </div>      
-                        </td>
+                                            @error('duration')
+                                                <div class="form-error">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
 
-                        <td>          
-                            <div class="form-group row">
-                                {{-- <label> Date </label> --}}
-                                <div class="col-md-9">
-                                    <input type="date"  class="form-control" name="date[]" >
-                                    <div class="form-control-position">
-                                  </div>
-                                        @error('date')
-                                            <div class="form-error">
-                                                {{$message}}
+                                <td>
+                                    <div class="form-group row">
+                                        {{-- <label> Date </label> --}}
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="date[]">
+                                            <div class="form-control-position">
                                             </div>
-                                        @enderror
-                                </div>
-                              </div>      
-                        </td>
+                                            @error('date')
+                                                <div class="form-error">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
 
-                        <td>          
-                            <div class="form-group row">
-                                {{-- <label> Distance </label> --}}
-                                <div class="col-md-9">
-                                    <input type="text"  class="form-control" name="distance[]" >
-                                    <div class="form-control-position">
-                                  </div>
-                                        @error('distance')
-                                            <div class="form-error">
-                                                {{$message}}
+                                <td>
+                                    <div class="form-group row">
+                                        {{-- <label> Distance </label> --}}
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="distance[]">
+                                            <div class="form-control-position">
                                             </div>
-                                        @enderror
-                                </div>
-                              </div>      
-                        </td>
-                    </tr>
+                                            @error('distance')
+                                                <div class="form-error">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
 
-                </tbody>
-            </table>
-        </div>
-       
-          <br><br>
-            <div class="btn-container">
-                <button type="submit" >Submit</button>
-            </div>
-            <br>
-            <div class="btn-container">
-                <button type="reset" >Cancel</button>
-            </div> 
-       
+                        </tbody>
+                    </table>
+                </div>
+
+                <br><br>
+                <div class="btn-container">
+                    <button type="submit">Submit</button>
+                </div>
+                <br>
+                <div class="btn-container">
+                    <button type="reset">Cancel</button>
+                </div>
+
 
             </form>
 
 
 
-      {{-- ************************************ --}}
+            {{-- ************************************ --}}
+
+        </div>
+        <!-- end container -->
+
 
     </div>
-    <!-- end container -->
+    <!-- end page-content -->
+    </div>
+    <!-- end grid-page -->
+    {{-- //////////////////////////////////////// --}}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function() {
 
+            // Start counting from the third row
+            var counter = 3;
 
-</div>
-<!-- end page-content -->
-</div>
-<!-- end grid-page -->
-{{-- //////////////////////////////////////// --}}
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script>
-$(function () {
+            $("#insertRow").on("click", function(event) {
+                event.preventDefault();
 
-// Start counting from the third row
-var counter = 3;
+                var newRow = $("<tr>");
+                var cols = '';
 
-$("#insertRow").on("click", function (event) {
-    event.preventDefault();
-
-    var newRow = $("<tr>");
-    var cols = '';
-
-    // Table columns
-    // cols += '<th scrope="row">' + counter + '</th>';
-    cols += '';
-    cols +=`<td>
+                // Table columns
+                // cols += '<th scrope="row">' + counter + '</th>';
+                cols += '';
+                cols += `<td>
                           <div class="form-group row">
                                 <select name="workout_id[]"  class="form-control">
                                     <option value="">choose workout </option>                                    
                                     @foreach ($workouts as $key => $value)                               
-                                        <option value="{{$value->id}}">{{$value->title}}</option>                                    
+                                        <option value="{{ $value->id }}">{{ $value->title }}</option>                                    
                                     @endforeach
                                 </select>
                 
                             </div>
                         </td>`
-    cols += `<td>          
+                cols += `<td>          
                             <div class="form-group row">
                                 <div class="col-md-9">
                                     <input type="text" name="duration[]"  placeholder="hh:mm:ss" class="form-control" size=30>
@@ -400,14 +414,15 @@ $("#insertRow").on("click", function (event) {
                                   </div>
                                         @error('duration')
                                             <div class="form-error">
-                                                {{$message}}
+                                                {{ $message }}
                                             </div>
                                         @enderror
                                 </div>
                               </div>      
                         </td>`
-    cols += '<td><div class="form-group row"><div class="col-md-9"><input type="date"  class="form-control" name="date[]" ><div class="form-control-position"><i class="ft-clock"></i></div></div></div></td>';
-    cols +=`<td>          
+                cols +=
+                    '<td><div class="form-group row"><div class="col-md-9"><input type="date"  class="form-control" name="date[]" ><div class="form-control-position"><i class="ft-clock"></i></div></div></div></td>';
+                cols += `<td>          
                             <div class="form-group row">
                                 <div class="col-md-9">
                                     <input type="text"  class="form-control" name="distance[]" >
@@ -415,36 +430,37 @@ $("#insertRow").on("click", function (event) {
                                   </div>
                                         @error('distance')
                                             <div class="form-error">
-                                                {{$message}}
+                                                {{ $message }}
                                             </div>
                                         @enderror
                                 </div>
                               </div>      
                         </td>`
-    cols += '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
+                cols +=
+                    '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
 
-    // Insert the columns inside a row
-    newRow.append(cols);
+                // Insert the columns inside a row
+                newRow.append(cols);
 
-    // Insert the row inside a table
-    $("table").append(newRow);
+                // Insert the row inside a table
+                $("table").append(newRow);
 
-    // Increase counter after each row insertion
-    counter++;
-});
+                // Increase counter after each row insertion
+                counter++;
+            });
 
-// Remove row when delete btn is clicked
-$("table").on("click", "#deleteRow", function (event) {
-    $(this).closest("tr").remove();
-    counter -= 1
-});
-});
-</script>
-{{-- //////////////////////////////////////// --}}
-<script src="{{URL::asset('src/js/jquery-3.6.0.js')}}"></script>
-<script src="{{URL::asset('src/js/owl.carousel.min.js')}}"></script>
-<script src="{{URL::asset('src/js/chart.min.js')}}"></script>
-<script src="{{URL::asset('src/js/main.js')}}"></script>
+            // Remove row when delete btn is clicked
+            $("table").on("click", "#deleteRow", function(event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        });
+    </script>
+    {{-- //////////////////////////////////////// --}}
+    <script src="{{ URL::asset('src/js/jquery-3.6.0.js') }}"></script>
+    <script src="{{ URL::asset('src/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/chart.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/main.js') }}"></script>
 
 </body>
 

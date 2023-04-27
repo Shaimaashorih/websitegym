@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Bord</title>
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/normaliz.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/main.css')}}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/normaliz.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.theme.default.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/main.css') }}" />
     <!-- icons script -->
     <script src="https://kit.fontawesome.com/92c7a83d65.js" crossorigin="anonymous"></script>
 </head>
@@ -23,11 +23,9 @@
         <div class="part1">
             <!-- start log -->
             @foreach ($general_settings as $item)
-     
-            <div class="log">
-                <img src="{{URL::asset('images').'/'.$item->logo_path}}" alt="Logo" />
-            </div>
-                
+                <div class="log">
+                    <img src="{{ URL::asset('images') . '/' . $item->logo_path }}" alt="Logo" />
+                </div>
             @endforeach
             <!-- end logo -->
         </div>
@@ -113,22 +111,25 @@
                 <!-- start profile-btn -->
                 <div class="profile-btn" data-dropDown>
                     <button class="btn">
-                        <img class="" src="{{URL::asset('src/image/user.png')}}" alt="user.." srcset="">
+                        <img class="" src="{{ URL::asset('src/image/user.png') }}" alt="user.." srcset="">
                     </button>
                     <!-- start drop-down -->
                     <div class="dropdown bx-shadow b-white">
                         <!-- start max-height -->
                         <div class="max-height d-flex column padding-5 gap-5">
 
-                            <a href="#"><i class="fa-solid fa-person" data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
+                            <a href="#"><i class="fa-solid fa-person"
+                                    data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
                             <a href="#"><i class="fa-solid fa-envelope" data-color="#3097ef"></i>inbox</a>
 
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
 
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                             @csrf
-                         </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                         <!-- end max-height -->
                     </div>
@@ -166,142 +167,155 @@
                     </button>
                     <div class="clospall">
                         <ul class="max-hieght">
-                            <li><a href="{{'/coursesa'}}">courses
+                            <li><a href="{{ '/dashboardadmin' }}">dashboardadmin
                                 </a></li>
-                            <li><a href="{{'/workouts'}}">Workout
+                            <li><a href="{{ '/coursesa' }}">courses
                                 </a></li>
-                            <li><a href="{{'user_workouts'}}">Workout for users
+                            <li><a href="{{ '/workouts' }}">Workout
                                 </a></li>
-                            <li><a href="{{url('/trainers')}}">trainer
+                            <li><a href="{{ 'user_workouts' }}">Workout for users
                                 </a></li>
-                            <li><a href="{{url('/general_settings/1/edit')}}">general settings
+                            <li><a href="{{ '/timetables' }}">Timetable
                                 </a></li>
-                            <li><a href="{{url('/users')}}">users
+                            <li><a href="{{ '/diet_menus' }}">Food Menu
                                 </a></li>
-                            <li><a href="{{url('/roles')}}">permissions
+                            @foreach ($articles as $articles)
+                                <li><a href="{{ 'articles/' . $articles->id . '/edit' }}">Articles
+                                    </a></li>
+                            @endforeach
+                            <li><a href="{{ url('/trainers') }}">trainers
                                 </a></li>
-                            <li><a href="{{url('/video_shows')}}">Video show
-                            </a></li>    
+                            <li><a href="{{ url('/general_settings' . '/' . 1 . '/edit') }}">general settings
+                                </a></li>
+                            <li><a href="{{ url('/users') }}">users
+                                </a></li>
+                            <li><a href="{{ url('/roles') }}">permissions
+                                </a></li>
+                            <li><a href="{{ url('/video_shows') }}">Video show
+                                </a></li>
+                            <li><a href="{{ url('/message') }}">message
+                                </a></li>
+                            <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
+                                </a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </div>
-        <!-- end leftr-nav -->
+        </li>
+        </ul>
+    </div>
+    <!-- end leftr-nav -->
 
-        <!-- ----------------------------- -->
+    <!-- ----------------------------- -->
 
-        <!-- start page-content -->
-        <div class="page-content padding-20">
-            <!-- start container -->
-            <div class="container d-flex row gap-20 wrap">
+    <!-- start page-content -->
+    <div class="page-content padding-20">
+        <!-- start container -->
+        <div class="container d-flex row gap-20 wrap">
 
-     {{-- ************************************ --}}
+            {{-- ************************************ --}}
 
 
-<!-- row -->
-<div class="row">
-    <div class="col-lg-12 col-md-12">
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
 
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>error</strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <div class="card">
-            <div class="card-body">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">Back</a>
-                    </div>
-                </div><br>
-
-                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
-                <div class="">
-
-                    <div class="row mg-b-20">
-                        <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label> user name: <span class="tx-danger">*</span></label>
-                            {!! Form::text('name', null, array('class' => 'form-control','required')) !!}
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>error</strong>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
+                    @endif
 
-                        <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>email : <span class="tx-danger">*</span></label>
-                            {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-lg-12 margin-tb">
+                                <div class="pull-right">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">Back</a>
+                                </div>
+                            </div><br>
+
+                            {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
+                            <div class="">
+
+                                <div class="row mg-b-20">
+                                    <div class="parsley-input col-md-6" id="fnWrapper">
+                                        <label> user name: <span class="tx-danger">*</span></label>
+                                        {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
+                                    </div>
+
+                                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                        <label>email : <span class="tx-danger">*</span></label>
+                                        {!! Form::text('email', null, ['class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row mg-b-20">
+                                <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                    <label> password: <span class="tx-danger">*</span></label>
+                                    {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
+                                </div>
+
+                                <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                    <label> confirm password: <span class="tx-danger">*</span></label>
+                                    {!! Form::password('confirm-password', ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="row row-sm mg-b-20">
+                                <div class="col-lg-6">
+                                    <label class="form-label"> user status</label>
+                                    <select name="Status" id="select-beast"
+                                        class="form-control  nice-select  custom-select">
+                                        <option value="{{ $user->Status }}">{{ $user->Status }}</option>
+                                        <option value="مفعل">active</option>
+                                        <option value="غير مفعل">not active </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mg-b-20">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>roles </strong>
+                                        {!! Form::select($roles_name, $roles, $userRole, ['class' => 'form-control', 'multiple']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mg-t-30">
+                                <button class="btn btn-main-primary pd-x-20" type="submit">Update</button>
+                            </div>
+                            {!! Form::close() !!}
                         </div>
                     </div>
-
                 </div>
-
-                <div class="row mg-b-20">
-                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label> password: <span class="tx-danger">*</span></label>
-                        {!! Form::password('password', array('class' => 'form-control','required')) !!}
-                    </div>
-
-                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>  confirm password: <span class="tx-danger">*</span></label>
-                        {!! Form::password('confirm-password', array('class' => 'form-control','required')) !!}
-                    </div>
-                </div>
-
-                <div class="row row-sm mg-b-20">
-                    <div class="col-lg-6">
-                        <label class="form-label"> user status</label>
-                        <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
-                            <option value="{{ $user->Status}}">{{ $user->Status}}</option>
-                            <option value="مفعل">active</option>
-                            <option value="غير مفعل">not active </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row mg-b-20">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>roles </strong>
-                            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))
-                            !!}
-                        </div>
-                    </div>
-                </div>
-                <div class="mg-t-30">
-                    <button class="btn btn-main-primary pd-x-20" type="submit">Update</button>
-                </div>
-                {!! Form::close() !!}
             </div>
+            {{-- ************************************ --}}
+
         </div>
+        <!-- end container -->
+
+
     </div>
-</div>
-     {{-- ************************************ --}}
-
+    <!-- end page-content -->
     </div>
-    <!-- end container -->
+    <!-- end grid-page -->
 
-
-</div>
-<!-- end page-content -->
-</div>
-<!-- end grid-page -->
-
-<script src="{{URL::asset('src/js/jquery-3.6.0.js')}}"></script>
-<script src="{{URL::asset('src/js/owl.carousel.min.js')}}"></script>
-<script src="{{URL::asset('src/js/chart.min.js')}}"></script>
-<script src="{{URL::asset('src/js/main.js')}}"></script>
+    <script src="{{ URL::asset('src/js/jquery-3.6.0.js') }}"></script>
+    <script src="{{ URL::asset('src/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/chart.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/main.js') }}"></script>
 
 </body>
 
 </html>
-
-
-
-

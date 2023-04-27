@@ -6,29 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Bord</title>
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/normaliz.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="{{URL::asset('src/css/dist/main.css')}}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/normaliz.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/owl.theme.default.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('src/css/dist/main.css') }}" />
     <!-- icons script -->
     <script src="https://kit.fontawesome.com/92c7a83d65.js" crossorigin="anonymous"></script>
 </head>
 <style>
-                                
-    table{
+    table {
         border: 1px solid rgb(124, 121, 121);
         width: 80%;
         /* margin: 2% auto; */
         border-collapse: collapse;
         table-layout: fixed;
-    }   
-    #insertRow{
-        border: 2px solid rgb(124, 121, 121);
-       display: inline;
-       margin-left: 50%;
-    } 
-    
+    }
 
+    #insertRow {
+        border: 2px solid rgb(124, 121, 121);
+        display: inline;
+        margin-left: 50%;
+    }
 </style>
 
 <body>
@@ -40,11 +38,9 @@
         <div class="part1">
             <!-- start log -->
             @foreach ($general_settings as $item)
-     
-            <div class="log">
-                <img src="{{URL::asset('images').'/'.$item->logo_path}}" alt="Logo" />
-            </div>
-                
+                <div class="log">
+                    <img src="{{ URL::asset('images') . '/' . $item->logo_path }}" alt="Logo" />
+                </div>
             @endforeach
             <!-- end logo -->
         </div>
@@ -130,22 +126,25 @@
                 <!-- start profile-btn -->
                 <div class="profile-btn" data-dropDown>
                     <button class="btn">
-                        <img class="" src="{{URL::asset('src/image/user.png')}}" alt="user.." srcset="">
+                        <img class="" src="{{ URL::asset('src/image/user.png') }}" alt="user.." srcset="">
                     </button>
                     <!-- start drop-down -->
                     <div class="dropdown bx-shadow b-white">
                         <!-- start max-height -->
                         <div class="max-height d-flex column padding-5 gap-5">
 
-                            <a href="#"><i class="fa-solid fa-person" data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
+                            <a href="#"><i class="fa-solid fa-person"
+                                    data-color="#8dc255"></i>{{ Auth::user()->name }}</a>
                             <a href="#"><i class="fa-solid fa-envelope" data-color="#3097ef"></i>inbox</a>
 
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    class="fa-solid fa-arrow-left" data-color="red"></i>logout</a>
 
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                             @csrf
-                         </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                         <!-- end max-height -->
                     </div>
@@ -173,127 +172,135 @@
 
         <!-- start left-nav -->
         <div class="left-nav b-white">
-            <ul>
-                <li data-dropDown class="">
-                    <button>
-                        <div>
-                            <i class="fa-solid fa-bars-progress"></i>
-                            <span class="re">Admin Dashbord</span>
-                        </div>
-                    </button>
-                    <div class="clospall">
-                        <ul class="max-hieght">
-                            <li><a href="{{'/coursesa'}}">courses
-                                </a></li>
-                            <li><a href="{{'/workouts'}}">Workout
-                                </a></li>
-                            <li><a href="{{'/timetables'}}">Timetable
-                                </a></li>
-                            @foreach($articles as $articles)
-                            <li><a href="{{'articles/'. $articles->id .'/edit'}}">Articles
-                                </a></li>
-                            @endforeach
-                            <li><a href="{{url('/trainers')}}">trainer
-                                </a></li>
-                            <li><a href="{{url('/general_settings')}}">general settings
-                                </a></li>
-                            <li><a href="{{url('/users')}}">users
-                                </a></li>
-                            <li><a href="{{url('/roles')}}">permissions
-                                </a></li>
-                            <li><a href="{{url('/video_shows')}}">Video show
-                            </a></li>    
-                        </ul>
-                    </div>
-                </li>
+            <div class="clospall">
+                <ul class="max-hieght">
+                    <li><a href="{{ '/dashboardadmin' }}">dashboardadmin
+                        </a></li>
+                    <li><a href="{{ '/coursesa' }}">courses
+                        </a></li>
+                    <li><a href="{{ '/workouts' }}">Workout
+                        </a></li>
+                    <li><a href="{{ 'user_workouts' }}">Workout for users
+                        </a></li>
+                    <li><a href="{{ '/timetables' }}">Timetable
+                        </a></li>
+                    <li><a href="{{ '/diet_menus' }}">Food Menu
+                        </a></li>
+                    @foreach ($articles as $articles)
+                        <li><a href="{{ 'articles/' . $articles->id . '/edit' }}">Articles
+                            </a></li>
+                    @endforeach
+                    <li><a href="{{ url('/trainers') }}">trainers
+                        </a></li>
+                    <li><a href="{{ url('/general_settings' . '/' . 1 . '/edit') }}">general settings
+                        </a></li>
+                    <li><a href="{{ url('/users') }}">users
+                        </a></li>
+                    <li><a href="{{ url('/roles') }}">permissions
+                        </a></li>
+                    <li><a href="{{ url('/video_shows') }}">Video show
+                        </a></li>
+                    <li><a href="{{ url('/message') }}">message
+                        </a></li>
+                    <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
+                        </a></li>
+                </ul>
+            </div>
+            </li>
             </ul>
         </div>
-        <!-- end leftr-nav -->
+        </li>
+        </ul>
+    </div>
+    <!-- end leftr-nav -->
 
-        <!-- ----------------------------- -->
+    <!-- ----------------------------- -->
 
-        <!-- start page-content -->
-        <div class="page-content padding-20">
-            <!-- start container -->
-            <div class="container d-flex row gap-20 wrap">
+    <!-- start page-content -->
+    <div class="page-content padding-20">
+        <!-- start container -->
+        <div class="container d-flex row gap-20 wrap">
 
-     {{-- ************************************ --}}
+            {{-- ************************************ --}}
 
-     @if(\Session::has('sucess'))
-     <div class="alert alert-success">
-         <p>{{\Session::get('success')}}</p>
-     </div>   
- @endif
-
- 
-        <form  action= "{{url('user_dietmenus/' . $user_dietmenus->id )}}" method="POST" enctype="multipart/form-data">
-           {{csrf_field()}}
-           @method('PATCH')
-   
-           <div class="form-group row">
-            <label> User Name </label>
-                <div>
-                      
-                      <select  name="user_id" class="form-control">
-                          @foreach ($users as $key => $value)
-                           <option {{$value->id == $user_dietmenus->user_id?'selected':''}} value="{{$value->id}}" >{{$value->name}}</option>                                    
-                          @endforeach
-                                 
-                      </select>
-  
+            @if (\Session::has('sucess'))
+                <div class="alert alert-success">
+                    <p>{{ \Session::get('success') }}</p>
                 </div>
+            @endif
+
+
+            <form action="{{ url('user_dietmenus/' . $user_dietmenus->id) }}" method="POST"
+                enctype="multipart/form-data">
+                {{ csrf_field() }}
+                @method('PATCH')
+
+                <div class="form-group row">
+                    <label> User Name </label>
+                    <div>
+
+                        <select name="user_id" class="form-control">
+                            @foreach ($users as $key => $value)
+                                <option {{ $value->id == $user_dietmenus->user_id ? 'selected' : '' }}
+                                    value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
+
+                        </select>
+
+                    </div>
                     @error('user_id')
                         <div class="form-error">
-                            {{$message}}
+                            {{ $message }}
                         </div>
                     @enderror
-          </div>
-  
-          <br>
-          <div class="form-group row">
-              <label> User food menu </label>
-                  <div >
-                      <select  name="diet_id" class="form-control">
-                          @foreach ($diet_menus as $key => $value)
-                          <option {{$value->id == $user_dietmenus->diet_id?'selected':''}} value="{{$value->id}}" >{{$value->title}}</option>                                    
-                          @endforeach
-                                  
-                      </select>
-  
-                  </div>
-                  @error('diet_id')
-                      <div class="form-error">
-                          {{$message}}
-                      </div>
-                  @enderror
-            </div>
-                       <div class="btn-container">
-                           <button type="submit" >Update</button>
-                       </div>
-                       <br>
-                       <div class="btn-container">
-                           <button type="reset" >Cancel</button>
-                       </div> 
-                   
-   
-               </form>
-   
+                </div>
 
-      {{-- ************************************ --}}
+                <br>
+                <div class="form-group row">
+                    <label> User food menu </label>
+                    <div>
+                        <select name="diet_id" class="form-control">
+                            @foreach ($diet_menus as $key => $value)
+                                <option {{ $value->id == $user_dietmenus->diet_id ? 'selected' : '' }}
+                                    value="{{ $value->id }}">{{ $value->title }}</option>
+                            @endforeach
+
+                        </select>
+
+                    </div>
+                    @error('diet_id')
+                        <div class="form-error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="btn-container">
+                    <button type="submit">Update</button>
+                </div>
+                <br>
+                <div class="btn-container">
+                    <button type="reset">Cancel</button>
+                </div>
+
+
+            </form>
+
+
+            {{-- ************************************ --}}
+
+        </div>
+        <!-- end container -->
+
 
     </div>
-    <!-- end container -->
+    <!-- end page-content -->
+    </div>
+    <!-- end grid-page -->
 
-
-</div>
-<!-- end page-content -->
-</div>
-<!-- end grid-page -->
-
-<script src="{{URL::asset('src/js/jquery-3.6.0.js')}}"></script>
-<script src="{{URL::asset('src/js/owl.carousel.min.js')}}"></script>
-<script src="{{URL::asset('src/js/chart.min.js')}}"></script>
-<script src="{{URL::asset('src/js/main.js')}}"></script>
+    <script src="{{ URL::asset('src/js/jquery-3.6.0.js') }}"></script>
+    <script src="{{ URL::asset('src/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/chart.min.js') }}"></script>
+    <script src="{{ URL::asset('src/js/main.js') }}"></script>
 
 </body>
 
