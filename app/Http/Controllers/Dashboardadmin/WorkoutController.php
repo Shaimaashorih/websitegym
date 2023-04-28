@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 
 class WorkoutController extends Controller
 {
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+         $this->middleware('permission:workout-list', ['only' => ['index','store']]);
+         $this->middleware('permission:workout-create', ['only' => ['create','store']]);
+         $this->middleware('permission:workout-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:workout-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

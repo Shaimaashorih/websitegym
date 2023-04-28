@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboardadmin\CourseAController;
 use App\Http\Controllers\Dashboardadmin\DashboardAdminController;
 use App\Http\Controllers\Dashboardadmin\Diet_menuController;
 use App\Http\Controllers\Dashboardadmin\General_settingsController;
+use App\Http\Controllers\Dashboardadmin\MessageController;
 use App\Http\Controllers\Dashboarduser\DashboardController;
 use App\Http\Controllers\Dashboardadmin\RoleController;
 use App\Http\Controllers\Dashboardadmin\TimetableController;
@@ -49,6 +50,8 @@ Auth::routes();
     Route::resource('user_workouts' , UserWorkoutController::class );
     Route::resource('diet_menus' , Diet_menuController::class);
     Route::resource('user_dietmenus' , User_timetableController::class);
+    Route::resource('/messages' , MessageController::class);
+
 // });
 
 

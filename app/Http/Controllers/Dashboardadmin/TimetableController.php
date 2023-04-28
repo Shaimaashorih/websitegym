@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\DB;
 
 class TimetableController extends Controller
 {
+    
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+         $this->middleware('permission:show', ['only' => ['index','store']]);
+         $this->middleware('permission:add', ['only' => ['create','store']]);
+         $this->middleware('permission:edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\DB;
 
 class UserWorkoutController extends Controller
 {
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+         $this->middleware('permission:workoutuser-list', ['only' => ['index','store']]);
+         $this->middleware('permission:workoutuser-create', ['only' => ['create','store']]);
+         $this->middleware('permission:workoutuser-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:workoutuser-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

@@ -197,6 +197,8 @@
                                 </a></li>
                             <li><a href="{{ url('/user_dietmenus') }}">user_dietmenus
                                 </a></li>
+                            <li><a href="{{ url('/messages') }}">messages
+                                </a></li>
                         </ul>
                     </div>
                 </li>

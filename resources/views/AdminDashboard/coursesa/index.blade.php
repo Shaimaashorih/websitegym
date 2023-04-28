@@ -232,9 +232,15 @@
                 <th>Description</th>
                 <th>times</th>
                 <th>image</th>
+                @can('course-list')
                 <th>View</th>
+                @endcan
+                @can('course-edit')
                 <th>Update</th>
+                @endcan
+                @can('course-delete')
                 <th>Delete</th>
+                @endcan
             </tr>
             @foreach ($courses as $item)
                 <tr>
@@ -246,19 +252,21 @@
                     <td>
                         <img src="{{ asset('images/' . $item->image) }}">
                     </td>
-
+                    @can('course-list')
                     <td>
                         <a href="{{ url('coursesa/' . $item->id) }}">
                             <button class="btn btn-info mb-2"> view </button>
                         </a>
                     </td>
-
+                    @endcan
+                    @can('course-edit')
                     <td>
                         <a href="{{ url('coursesa/' . $item->id) . '/edit' }}">
                             <button> Update </button>
                         </a>
                     </td>
-
+                    @endcan
+                    @can('course-delete')
                     <td>
                         <form method="POST" action="{{ url('/coursesa' . '/' . $item->id) }}">
                             {{ method_field('DELETE') }}
@@ -267,7 +275,7 @@
                             <button type="submit" class="btn btn-danger mb-2"> <i class="fa fa-trash"></i></button>
                         </form>
                     </td>
-
+                    @endcan
                 </tr>
             @endforeach
 
